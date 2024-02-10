@@ -1,0 +1,24 @@
+from selenium.webdriver import Chrome
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from time import sleep
+from pandas import read_csv
+import datetime
+LINK = 'https://it.wikipedia.org/wiki/Pagina_principale'
+CATEGORIE ={
+    'Created date (UTC)': '',
+    'Nome': '',
+    'Cognome': ''
+}
+#df=read_csv('città_latine3.csv',  index_col=0, encoding='utf-8')
+
+chrome_driver = ChromeDriverManager().install()
+driver = Chrome(service=Service(chrome_driver))
+
+driver.maximize_window()
+driver.get(LINK)
+driver.find_element(By.CLASS_NAME, 'vector-search-box-input').send_keys('Etruschi')
+driver.find_element(By.ID, 'searchButton').click()
+sleep(1)
+input()
